@@ -5,6 +5,7 @@
 #ifndef OPEN_POS_CLIENT_MAINWINDOW_H
 #define OPEN_POS_CLIENT_MAINWINDOW_H
 
+#include "EditProductDialog.h"
 #include <QtWidgets/QMainWindow>
 
 namespace openpos {
@@ -28,6 +29,8 @@ namespace openpos {
         void initStatusBar();
         void readSettings();
         void writeSettings();
+
+        EditProductDialog *editProductDialog;
     };
 }// namespace openpos
 

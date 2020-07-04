@@ -14,13 +14,16 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
+add_library(model src/cpp/model/Product)
+target_link_libraries(model PRIVATE Qt5::Core)
+
 add_library(config src/cpp/config/ConfigController)
 target_link_libraries(config PRIVATE Qt5::Widgets)
 target_include_directories(config PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
 
-add_library(mainwindow src/cpp/ui/MainWindow)
-target_link_libraries(mainwindow PRIVATE Qt5::Widgets)
+add_library(ui src/cpp/ui/MainWindow src/cpp/ui/EditProductDialog)
+target_link_libraries(ui PRIVATE Qt5::Widgets model)
 
 add_executable(openpos src/cpp/main.cpp ${QT_RESOURCES})
-target_link_libraries(openpos Qt5::Widgets config mainwindow)
+target_link_libraries(openpos Qt5::Widgets config ui)
 target_include_directories(openpos PRIVATE ${CMAKE_CURRENT_BINARY_DIR})

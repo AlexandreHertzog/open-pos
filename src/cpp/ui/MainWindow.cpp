@@ -7,6 +7,8 @@
 #include <QtWidgets>
 
 openpos::MainWindow::MainWindow() {
+    editProductDialog = new EditProductDialog(this);
+
     auto *mainWidget = new QWidget(this);
 
     auto *mainLayout = new QVBoxLayout;
@@ -40,7 +42,7 @@ QMenu *openpos::MainWindow::buildProductMenu() {
     auto menu = new QMenu(tr("&Produtos"), this);
     QAction *newProduct = menu->addAction(tr("&Novo produto"));
     newProduct->setStatusTip(tr("Abre a tela de adição de novo produto"));
-    //    connect(newProduct, &QAction::triggered, this, &MainWindow::close);
+    connect(newProduct, &QAction::triggered, editProductDialog, &QDialog::exec);
     return menu;
 }
 
